@@ -1,0 +1,58 @@
+/*Paragraph icon buttons*/
+.field-type-paragraphs input.paragraphs-add-mode-button {
+  border-radius: 0 !important;
+  font-size: 1.8em !important;
+  margin-top: 0;
+  font-family: 'FontAwesome';
+}
+
+.field-type-paragraphs .form-item {
+  margin-top: 0;
+}
+
+#modal-content .field-type-paragraphs input.paragraphs-add-mode-button {
+  color: #333333;
+  background-color: white;
+  border-color: #cccccc;
+}
+
+.paragraphs-item-type-pdms-paragraph-button {
+  .form-control {
+    width: initial;
+  }
+  fieldset .panel-body.fieldset-wrapper {
+    overflow: initial !important;
+  }
+}
+
+/* The paragraph bundles button */
+.pdms-paragraph-button-background {
+  margin: 0 auto 20px auto;
+  width: 100%;
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+  a {
+    color: transparent;
+  }
+  .inner-button-contents {
+    padding: 20px;
+    overflow: hidden;
+    .pdms-paragraph-button-image {
+      vertical-align: middle;
+      display: inline-block;
+      img {
+        -moz-border-radius: 15px;
+        border-radius: 15px;
+      }
+    }
+    .pdms-paragraph-button-text {
+      vertical-align: middle;
+      display: inline-block;
+      padding: 20px;
+      float: right;
+      p {
+        margin: 0;
+      }
+    }
+  }
+}

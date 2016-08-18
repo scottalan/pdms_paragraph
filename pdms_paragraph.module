@@ -1,0 +1,144 @@
+<?php
+/**
+ * @file
+ * Code for the PDMS Paragraph feature.
+ */
+
+include_once 'pdms_paragraph.features.inc';
+include_once 'includes/pdms_paragraph.pdms_paragraph_button.render.inc';
+
+///**
+// * Implements hook_preprocess_HOOK().
+// *
+// * Pre-process theme variables for various paragraph bundles.
+// */
+//function pdms_paragraph_preprocess_entity(&$vars) {
+//  if ($vars['entity_type'] == 'paragraphs_item' && $vars['paragraphs_item']->bundle === 'pdms_paragraph_button') {
+//    $info = paragraphs_bundles_get_paragraph_field_info();
+//    if (!empty($info)) {
+//      $field_name = NULL;
+//      $value = NULL;
+//      $paragraph_wrapper = entity_metadata_wrapper('paragraphs_item', $vars['paragraphs_item']);
+//      $vars['pdms_paragraph_button_content'] = '';
+//
+//      foreach ($info as $field_name => $bundle) {
+//        foreach ($bundle as $bundle_name => $data) {
+//          if ($data['module'] === 'pdms_paragraph' && $paragraph_wrapper->bundle->value() == $bundle_name) {
+//            if (isset($paragraph_wrapper->{$field_name})) {
+//              $value = $paragraph_wrapper->{$field_name}->value();
+//            }
+//            if (isset($data['render callback'])) {
+//              if (is_array($data['render callback'])) {
+//                foreach ($data['render callback'] as $function) {
+//                  if (function_exists($function)) {
+//                    // Call the function that will allow pre-processing for this layout selection.
+//                    $function($vars, $bundle_name, $field_name, $value);
+//                    // This allows other modules to alter the '$variables' array after we are done with it. If you want to
+//                    // completely override it then use drupal_alter: "hook_paragraphs_bundles_field_info_alter()" and
+//                    // replace the 'render callback'.
+//                    drupal_alter($function, $vars, $bundle_name, $field_name, $value);
+//                  }
+//                }
+//              }
+//              else {
+//                $function = $data['render callback'];
+//                if (function_exists($function)) {
+//                  // Call the function that will allow pre-processing for this layout selection.
+//                  $function($vars, $bundle_name, $field_name, $value);
+//                  // This allows other modules to alter the '$variables' array after we are done with it. If you want to
+//                  // completely override it then use drupal_alter: "hook_paragraphs_bundles_field_info_alter()" and
+//                  // replace the 'render callback'.
+//                  drupal_alter($function, $vars, $bundle_name, $field_name, $value);
+//                }
+//              }
+//            }
+//          }
+//        }
+//      }
+//    }
+//  }
+//}
+
+/**
+ * Implements hook_oa_related_field_info().
+ */
+function pdms_paragraph_oa_related_field_info() {
+  // Base information. Right now we are using the same render callback.
+  $base = array(
+    'pdms_paragraph_button' => array(
+      'render callback' => 'pdms_paragraph_button_render_values',
+      'module' => 'pdms_paragraph',
+    ),
+  );
+
+  // Gathers a list of available image styles.
+  $image_styles = image_style_options(FALSE);
+
+  $info = array(
+    'field_button_bg_color' => array() + $base,
+    'field_button_image' => array() + $base,
+    'field_button_image_style' => array(
+      'pdms_paragraph_button' => array(
+        'render callback' => 'pdms_paragraph_button_render_values',
+        'allowed values' => $image_styles,
+        'module' => 'pdms_paragraph',
+      ),
+    ),
+    'field_button_text' => array() + $base,
+    'field_button_text_color' => array() + $base,
+  );
+
+  return $info;
+}
+
+function pdms_paragraph_button_image_style_allowed_values() {
+  // Gathers a list of available image styles.
+  $image_styles = image_style_options(FALSE);
+  return $image_styles;
+}
+
+/**
+ * Implements hook_theme().
+ */
+function pdms_paragraph_theme($existing, $type, $theme, $path) {
+  return array(
+    // This is named by design so the ['#theme'] element is set.
+    // @see oa_related_paragraphs_field_widget_form_alter().
+    'oa_related_paragraphs_pdms_paragraph_button_form' => array(
+      'path' => $path . '/templates',
+      'template' => 'pdms_paragraph_button_form',
+      'render element' => 'element',
+    ),
+    'pdms_paragraph_button_render' => array(
+      'path' => $path . '/templates',
+      'base hook' => 'entity',
+      'template' => 'pdms_paragraph_button_render',
+      'render element' => 'element',
+    ),
+  );
+}
+
+/**
+ * Implements hook_oa_related_icons().
+ *
+ * This is using font-awesome unicode values to return icons for paragraph
+ * buttons.
+ *
+ * @see http://fortawesome.github.io/Font-Awesome/3.2.1/cheatsheet/
+ */
+function pdms_paragraph_oa_related_icons($type) {
+  $info = array();
+  switch ($type) {
+    case 'pdms_paragraph_button':
+      $info = array(
+        // @todo: Replace this with a "real" icon.
+        'icon' => decode_entities('&#xf118;'),
+      );
+      break;
+
+    default:
+      break;
+  }
+
+  return $info;
+}

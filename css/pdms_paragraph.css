@@ -1,0 +1,68 @@
+/*Paragraph icon buttons*/
+/* line 2, ../scss/pdms_paragraph.scss */
+.field-type-paragraphs input.paragraphs-add-mode-button {
+  border-radius: 0 !important;
+  font-size: 1.8em !important;
+  margin-top: 0;
+  font-family: 'FontAwesome';
+}
+
+/* line 9, ../scss/pdms_paragraph.scss */
+.field-type-paragraphs .form-item {
+  margin-top: 0;
+}
+
+/* line 13, ../scss/pdms_paragraph.scss */
+#modal-content .field-type-paragraphs input.paragraphs-add-mode-button {
+  color: #333333;
+  background-color: white;
+  border-color: #cccccc;
+}
+
+/* line 20, ../scss/pdms_paragraph.scss */
+.paragraphs-item-type-pdms-paragraph-button .form-control {
+  width: initial;
+}
+/* line 23, ../scss/pdms_paragraph.scss */
+.paragraphs-item-type-pdms-paragraph-button fieldset .panel-body.fieldset-wrapper {
+  overflow: initial !important;
+}
+
+/* The paragraph bundles button */
+/* line 29, ../scss/pdms_paragraph.scss */
+.pdms-paragraph-button-background {
+  margin: 0 auto 20px auto;
+  width: 100%;
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+}
+/* line 34, ../scss/pdms_paragraph.scss */
+.pdms-paragraph-button-background a {
+  color: transparent;
+}
+/* line 37, ../scss/pdms_paragraph.scss */
+.pdms-paragraph-button-background .inner-button-contents {
+  padding: 20px;
+  overflow: hidden;
+}
+/* line 40, ../scss/pdms_paragraph.scss */
+.pdms-paragraph-button-background .inner-button-contents .pdms-paragraph-button-image {
+  vertical-align: middle;
+  display: inline-block;
+}
+/* line 43, ../scss/pdms_paragraph.scss */
+.pdms-paragraph-button-background .inner-button-contents .pdms-paragraph-button-image img {
+  -moz-border-radius: 15px;
+  border-radius: 15px;
+}
+/* line 48, ../scss/pdms_paragraph.scss */
+.pdms-paragraph-button-background .inner-button-contents .pdms-paragraph-button-text {
+  vertical-align: middle;
+  display: inline-block;
+  padding: 20px;
+  float: right;
+}
+/* line 53, ../scss/pdms_paragraph.scss */
+.pdms-paragraph-button-background .inner-button-contents .pdms-paragraph-button-text p {
+  margin: 0;
+}
